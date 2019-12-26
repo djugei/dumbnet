@@ -17,9 +17,9 @@ serde_derive = "1.0"
 numeric-array = "0.4"
 
 [dev-dependencies]
-gnuplot = "*"
-indicatif = "*"
-bincode = "*"
+gnuplot = "0.0.32"
+indicatif = "0.13"
+bincode = "1.2"
 
 [profile.release]
 lto = "fat"
