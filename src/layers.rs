@@ -1,16 +1,30 @@
-//! Stackable Layers
+//! # Stackable Layers
 //!
+//! ## Construction
 //! You generally start with specifying your OutputLayer onto which you then
 //! [InnerLayer.push()](InnerLayer#method.push) inner layers.
 //! the resulting layer is the input layer.
 //!
+//! ## Training
+//!
 //! You would then train the resulting network using [Backpropagaiton](Layer#method.backprop) by showing
 //! it inputs and expected outputs.
 //!
+//!
+//! ## Use
 //! Once trained you can ask it to [calculate](Layer#tymethod.calculate) an output for any input.
 //!
 //! Layers, and therefore the whole Network, can be serialized and deserialized at any time, using
 //! SerDe.
+//!
+//! ## Type Parameters
+//! Layers take tons of type parameters, but you usually only have to give two, the activation
+//! function and that layers size. those are also the leftmost type parameters. Other parameters
+//! can be left as _.
+//!
+//! Only the input layer needs to have both its size and its inputs provided.
+//!
+//! Check out the example directory if you are still unsure.
 
 use generic_array::{ArrayLength, GenericArray};
 

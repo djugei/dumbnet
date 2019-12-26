@@ -15,9 +15,18 @@
 //! Since the whole network layout needs to be known at compile time the dimensions of inputs and
 //! outputs are checked.
 //!
+//! ## Easy to get started
+//! No need for OpenCL or CUDA, it just runs on your CPU. Or basically any other CPU for that
+//! matter.
+//!
 //! ## Optimization
 //! The whole network being known to the compiler might enable some optimizations. That said the
 //! library is currently not very well optimized.
+//!
+//!
+//! Also it was a fun challenge and actually worked out :)
+//!
+//! Check the examples directory for some simple networks to get started.
 
 #[macro_use]
 extern crate serde_derive;
