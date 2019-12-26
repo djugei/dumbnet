@@ -3,6 +3,8 @@ name = "dumbnet"
 version = "0.1.0"
 authors = ["djugei <ddjugei@gmail.com>"]
 edition = "2018"
+license = "Apache-2.0"
+repository = "https://github.com/djugei/dumbnet"
 
 [dependencies]
 generic-array = { version = "*", features = ["serde"] }
