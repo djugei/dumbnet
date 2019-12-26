@@ -1,11 +1,27 @@
+//! Activations for use in [layers](crate::layers)
+//!
+//! The Enums in this module are empty and therefore not initializable. They are only used as type
+//! paramenters.
 use core::fmt::Debug;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
+
 pub trait Activation: Debug + Serialize + DeserializeOwned + Clone {
+    /// Input is the summed and weighted inputs of this neuron
+    ///
+    /// Output is the output of the neuron
     fn activate(inputs: f32) -> f32;
+
+    /// Input is the previous activation, as in the result of this traits activate() function
+    ///
+    /// Output is the derivate of this activation function at that point.
+    /// The derivate may be slightly adapted to better suit the needs of gradient descent
     fn derivate(activation: f32) -> f32;
 }
 
+/// A smooth sigmoid between -1 and 1.
+///
+/// 1/ 1 + (e^input)
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum Sigmoid {}
 
@@ -27,6 +43,7 @@ impl Activation for Sigmoid {
     }
 }
 
+/// Returns max(0, input)
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum ReLu {}
 
@@ -45,6 +62,7 @@ impl Activation for ReLu {
     }
 }
 
+#[doc(hidden)]
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum SoftMax {}
 

@@ -1,7 +1,14 @@
+//! a Layer implementing a SoftMax activation function
+//!
+//! for generic layer documentation see [layers](crate::layers)
 use crate::activation::SoftMax as SA;
 use crate::layers::{Layer, AL, NL};
 use generic_array::GenericArray;
 
+/// SoftMax is defined separately because it does not quite fit the other Layers.
+///
+/// Mainly its activation is based on the whole layer and not calculated on a neuron-by-neuron
+/// basis.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(bound = "Neurons: NL<Input>, Input: AL")]
 pub struct SoftMax<Neurons: NL<Input>, Input: AL> {

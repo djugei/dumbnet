@@ -1,3 +1,17 @@
+//! Stackable Layers
+//!
+//! You generally start with specifying your OutputLayer onto which you then
+//! [InnerLayer.push()](InnerLayer#method.push) inner layers.
+//! the resulting layer is the input layer.
+//!
+//! You would then train the resulting network using [Backpropagaiton](Layer#method.backprop) by showing
+//! it inputs and expected outputs.
+//!
+//! Once trained you can ask it to [calculate](Layer#tymethod.calculate) an output for any input.
+//!
+//! Layers, and therefore the whole Network, can be serialized and deserialized at any time, using
+//! SerDe.
+
 use generic_array::{ArrayLength, GenericArray};
 
 use rand::Rng;
@@ -12,7 +26,7 @@ pub trait AL = ArrayLength<f32> + Debug + Clone;
 pub trait NL<Input: ArrayLength<f32>> =
     ArrayLength<GenericArray<f32, Input>> + ArrayLength<f32> + Debug + Clone;
 
-pub fn loss<Len: AL>(errors: &GenericArray<f32, Len>) -> f32 {
+fn loss<Len: AL>(errors: &GenericArray<f32, Len>) -> f32 {
     let sum: f32 = errors.iter().map(|e| e * e).sum();
     sum.sqrt()
 }
@@ -109,6 +123,7 @@ pub trait Layer<
 	}
 }
 
+/// The final layer of a Network.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(bound = "Neurons: NL<Input>, Input: AL")]
 pub struct OutputLayer<A: Activation, Neurons: NL<Input>, Input: AL> {
@@ -250,6 +265,7 @@ impl<
         Next: Layer<Neurons, NextN, FinalOut, NextA>,
     > InnerLayer<A, Neurons, Input, NextN, FinalOut, NextA, Next>
 {
+    /// Pushes this layer on top of an existing layer.
     pub fn push(next: Next) -> Self {
         Self {
             next,
