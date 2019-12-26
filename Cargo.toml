@@ -7,13 +7,10 @@ edition = "2018"
 [dependencies]
 generic-array = { version = "*", features = ["serde"] }
 rand = { version = "*", default-features = false, features = ["getrandom"] }
-getrandom = { version = "*", default-features = false, features = ["dummy"], path = "../getrandom" }
+getrandom = { version = "*", default-features = false, features = ["dummy"] }
 itertools = { version = "*", default-features = false }
 serde = { version = "*", default-features = false }
 serde_derive = "*"
-# ndarray = { version = "*", features = ["blas"] }
-# blas-src = { version = "*", default-features = false, features = ["openblas"] }
-# openblas-src = { version = "*", default-features = false, features = ["cblas", "system"] }
 numeric-array = "*"
 
 [dev-dependencies]
