@@ -8,13 +8,13 @@ repository = "https://github.com/djugei/dumbnet"
 description = "a [no_std] neural network library"
 
 [dependencies]
-generic-array = { version = "*", features = ["serde"] }
-rand = { version = "*", default-features = false, features = ["getrandom"] }
-getrandom = { version = "*", default-features = false, features = ["dummy"] }
-itertools = { version = "*", default-features = false }
-serde = { version = "*", default-features = false }
-serde_derive = "*"
-numeric-array = "*"
+generic-array = { version = "0.13", features = ["serde"] }
+rand = { version = "0.7", default-features = false, features = ["getrandom"] }
+getrandom = { version = "0.1", default-features = false, features = ["dummy"] }
+itertools = { version = "0.8", default-features = false }
+serde = { version = "1.0", default-features = false }
+serde_derive = "1.0"
+numeric-array = "0.4"
 
 [dev-dependencies]
 gnuplot = "*"
